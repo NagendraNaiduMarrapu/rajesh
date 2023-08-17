@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	id:<input type="text" name="id" id="id"/>
+	Name:<input type="text" name="name" id="name"/>
+	Department:<input type="text" name="dept" id="dept"/>
+	Salary : <input type="text" name="sal" id="sal"/>
+	<button name="first" onclick="first()">First</button>
+	<button name="next">Next</button>
+	<button name="previous">previous</button>
+	<button name="last" onclick="last()">last</button>
+	<button name="edit">edit</button>
+	<button name="save">save</button>
+	<button name="add">add</button>
+	<button name="delete">Delete</button>
+	<button name="exit">Exit</button>
+	<button name="clear">Clear</button>
+	<button name="search">Search</button>
+</body>
+
+
+<script>
+var x = localStorage.getItem("EmployeeData");
+var EmployeeData = JSON.parse(x);
+var id = document.getElementById("id");
+var names = document.getElementById("name");
+var dept = document.getElementById("dept");
+var sal = document.getElementById("sal");
+
+function first(){
+	id.value = EmployeeData[0].id;
+	names.value = EmployeeData[0].name;
+	dept.value = EmployeeData[0].dept;
+	sal.value = EmployeeData[0].salary;
+}
+
+
+function last(){
+	var length = EmployeeData.length;
+	var n=length-1;
+	id.value = EmployeeData[n].id;
+	names.value = EmployeeData[n].name;
+	dept.value = EmployeeData[n].dept;
+	sal.value = EmployeeData[n].salary;
+}
+var xhr = new XMLHttpRequest();
+
+$(document).ready(function(){
+	xhr.open("GET","http://localhost:8080/Employeee/EmpServlet",true);
+});
+console.log(x);
+
+</script>
+</html>
